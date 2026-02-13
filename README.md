@@ -1,1 +1,1 @@
-# ressources-p-dagogiques-monsieur-dieu
+# ressources-monsieur-dieu
