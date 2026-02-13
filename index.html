@@ -8,11 +8,12 @@
     <style>
         :root {
             --hist-color: #721c24;
-            --geo-color: #0c5460;
-            --emc-color: #155724;
+            --geo-color: #155724;
+            --emc-color: #000000;
             --paper-bg: #fdf6e3;
             --accent-wood: #4e342e;
             --text-sepia: #433422;
+            --actu-color: #FFD700;
         }
         body {
             font-family: 'Public Sans', sans-serif;
@@ -149,6 +150,8 @@
         .disc-géographie { color: var(--geo-color); }
         .item-emc { border-left-color: var(--emc-color); }
         .disc-emc { color: var(--emc-color); }
+        .item-actualité { border-left-color: var(--actu-color);}
+        .disc-actualité { color: var(--actu-color);}
         @media (max-width: 600px) {
             .hero h1 { font-size: 1.8rem; }
             .accordion-header { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -302,6 +305,7 @@
 </script>
 </body>
 </html>
+
 
 
 
