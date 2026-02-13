@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Les ressources de M. Dieu</title>
+    <title>Les Cahiers de M. Di</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@600;800&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -132,16 +132,17 @@
             border-left: 3px solid #d3c9a9;
         }
 
-        .resource-list { display: flex; gap: 15px; flex-wrap: wrap; }
+        .resource-list { display: flex; gap: 10px; flex-wrap: wrap; }
 
         .btn {
-            padding: 10px 20px;
+            padding: 10px 18px;
             text-decoration: none;
             color: #fff;
             font-size: 0.85rem;
             font-weight: 600;
             border-radius: 3px;
             transition: opacity 0.2s;
+            white-space: nowrap;
         }
 
         .btn-pdf { background: #a63d40; }
@@ -165,8 +166,8 @@
 <body>
 
 <div class="hero">
-    <h1>Les ressources de M. Dieu</h1>
-    <p>« L'Histoire vaut bien mieux que la Géo. » Votre profsseur préféré.</p>
+    <h1>Les Cahiers de M. Di</h1>
+    <p>« Celui qui ne sait pas d'où il vient ne peut savoir où il va. »</p>
 </div>
 
 <div class="container">
@@ -240,8 +241,25 @@
         filtered.forEach((i, idx) => {
             const dClass = i.disc ? i.disc.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
             let btns = "";
-            if(i.pdf && i.pdf.length > 10) btns += `<a href="${i.pdf}" target="_blank" class="btn btn-pdf">Cours (PDF)</a>`;
-            if(i.vid && i.vid.length > 10) btns += `<a href="${i.vid}" target="_blank" class="btn btn-video">Vidéo</a>`;
+            
+            // Gestion multi-PDF
+            if(i.pdf && i.pdf.length > 10) {
+                const pdfs = i.pdf.split('|');
+                pdfs.forEach((link, n) => {
+                    const label = pdfs.length > 1 ? `PDF ${n+1}` : `Cours (PDF)`;
+                    btns += `<a href="${link.trim()}" target="_blank" class="btn btn-pdf">${label}</a>`;
+                });
+            }
+            
+            // Gestion multi-Vidéos
+            if(i.vid && i.vid.length > 10) {
+                const vids = i.vid.split('|');
+                vids.forEach((link, n) => {
+                    const label = vids.length > 1 ? `Vidéo ${n+1}` : `Vidéo`;
+                    btns += `<a href="${link.trim()}" target="_blank" class="btn btn-video">${label}</a>`;
+                });
+            }
+
             if(i.img && i.img.length > 10) btns += `<a href="${i.img}" target="_blank" class="btn btn-image">Schéma</a>`;
 
             const descHtml = i.desc ? `<div class="description-text">${i.desc}</div>` : "";
@@ -274,4 +292,3 @@
 </script>
 </body>
 </html>
-
