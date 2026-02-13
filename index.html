@@ -166,4 +166,132 @@
         .btn:active { transform: scale(0.95); }
         .btn-pdf { background: #ef4444; box-shadow: 0 4px 0 #b91c1c; }
         .btn-video { background: #f59e0b; box-shadow: 0 4px 0 #b45309; }
-        .btn-image { background: #10b981; box-shadow:
+        .btn-image { background: #10b981; box-shadow: 0 4px 0 #047857; }
+        
+        .btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+        /* Couleurs thématiques */
+        .disc-histoire { color: var(--hist-color); }
+        .bg-histoire { background-color: var(--hist-color); }
+        .disc-géographie { color: var(--geo-color); }
+        .bg-géographie { background-color: var(--geo-color); }
+        .disc-emc { color: var(--emc-color); }
+        .bg-emc { background-color: var(--emc-color); }
+
+        @media (max-width: 600px) {
+            .search-container { flex-direction: column; }
+            .hero h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>📚 Ressources Pédagogiques</h1>
+    <p>Histoire, Géographie & EMC</p>
+</div>
+
+<div class="container">
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="🔍 Rechercher un cours..." oninput="updateUI()">
+        <select id="f-disc" onchange="updateUI()">
+            <option value="all">Toutes les matières</option>
+            <option value="Histoire">Histoire</option>
+            <option value="Géographie">Géographie</option>
+            <option value="EMC">EMC</option>
+        </select>
+        <select id="f-niv" onchange="updateUI()">
+            <option value="all">Tous les niveaux</option>
+            <option value="Seconde">Seconde</option>
+            <option value="Première">Première</option>
+            <option value="Terminale">Terminale</option>
+        </select>
+    </div>
+
+    <div id="main-list">Chargement des ressources...</div>
+</div>
+
+<script>
+    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRZhz8gOzUerJX7GxoLpwCCMFFCXnJC8C7gpA6ztWO1yJB-OEyT2aKhAK3UtanDyUUJGSVxXx6fHFIz/pub?output=tsv";
+    let dataStore = [];
+
+    async function load() {
+        try {
+            const r = await fetch(url + "&nocache=" + Date.now());
+            const text = await r.text();
+            const lines = text.split('\n').slice(1);
+            
+            dataStore = lines.map(line => {
+                const c = line.includes('\t') ? line.split('\t') : line.split(',');
+                return { 
+                    disc: c[0]?.trim(), 
+                    niv: c[1]?.trim(), 
+                    titre: c[2]?.trim(), 
+                    pdf: c[3]?.trim(), 
+                    vid: c[4]?.trim(), 
+                    img: c[5]?.trim() 
+                };
+            }).filter(i => i.titre && i.titre.length > 1);
+
+            updateUI();
+        } catch (e) { 
+            document.getElementById('main-list').innerHTML = "Erreur de connexion au tableur."; 
+        }
+    }
+
+    function updateUI() {
+        const dF = document.getElementById('f-disc').value;
+        const nF = document.getElementById('f-niv').value;
+        const sF = document.getElementById('search-bar').value.toLowerCase();
+        const list = document.getElementById('main-list');
+        list.innerHTML = "";
+
+        const filtered = dataStore.filter(i => {
+            const matchD = (dF === 'all' || i.disc === dF);
+            const matchN = (nF === 'all' || i.niv === nF);
+            const matchS = i.titre.toLowerCase().includes(sF);
+            return matchD && matchN && matchS;
+        });
+
+        if (filtered.length === 0) {
+            list.innerHTML = "<p style='text-align:center; padding:20px; color:#64748b;'>Aucun résultat trouvé.</p>";
+            return;
+        }
+
+        filtered.forEach((i, idx) => {
+            const dClass = i.disc ? i.disc.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
+            let btns = "";
+            if(i.pdf && i.pdf.length > 10) btns += `<a href="${i.pdf}" target="_blank" class="btn btn-pdf">PDF</a>`;
+            if(i.vid && i.vid.length > 10) btns += `<a href="${i.vid}" target="_blank" class="btn btn-video">Vidéo</a>`;
+            if(i.img && i.img.length > 10) btns += `<a href="${i.img}" target="_blank" class="btn btn-image">Image</a>`;
+
+            list.innerHTML += `
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggle(${idx})">
+                        <div class="course-info">
+                            <div class="indicator bg-${dClass}"></div>
+                            <div class="title-group">
+                                <span class="disc-label disc-${dClass}">${i.disc}</span>
+                                <span class="course-title">${i.titre}</span>
+                            </div>
+                        </div>
+                        <span class="niveau-badge">${i.niv}</span>
+                    </div>
+                    <div id="c-${idx}" class="accordion-content">
+                        <div class="resource-list">${btns || "<i>Pas de ressources.</i>"}</div>
+                    </div>
+                </div>`;
+        });
+    }
+
+    function toggle(idx) {
+        const el = document.getElementById(`c-${idx}`);
+        const isActive = el.classList.contains('active');
+        document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
+        if(!isActive) el.classList.add('active');
+    }
+
+    load();
+</script>
+</body>
+</html>
