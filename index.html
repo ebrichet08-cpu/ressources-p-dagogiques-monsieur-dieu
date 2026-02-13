@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Les documents de M. Dieu</title>
+    <title>Les Cahiers de M. Di</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@600;800&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --hist-color: #721c24;
             --geo-color: #0c5460;
             --emc-color: #155724;
-            /* Palette Chaleureuse */
-            --paper-bg: #fdf6e3; /* Crème papier */
+            --paper-bg: #fdf6e3;
             --accent-wood: #4e342e;
             --text-sepia: #433422;
         }
@@ -19,7 +18,6 @@
         body {
             font-family: 'Public Sans', sans-serif;
             background-color: var(--paper-bg);
-            /* Texture papier subtile */
             background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
             color: var(--text-sepia);
             margin: 0;
@@ -27,7 +25,6 @@
             line-height: 1.6;
         }
 
-        /* --- HEADER STYLE "VIEUX GRIMOIRE" --- */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
                         url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1000&auto=format&fit=crop'); 
@@ -43,7 +40,6 @@
             font-family: 'Crimson Pro', serif;
             font-size: 2.8rem;
             margin: 0;
-            letter-spacing: 1px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
@@ -53,7 +49,6 @@
             padding: 0 20px 40px 20px;
         }
 
-        /* --- FILTRES STYLE "BUREAU" --- */
         .search-container {
             background: #fffdf7;
             padding: 25px;
@@ -71,13 +66,11 @@
             padding: 12px;
             border: 1px solid #d3c9a9;
             background: #fff;
-            font-family: inherit;
             border-radius: 4px;
             flex: 1;
             min-width: 180px;
         }
 
-        /* --- ACCORDÉON "FEUILLES DE PAPIER" --- */
         .accordion-item {
             background: #fff;
             margin-bottom: 20px;
@@ -129,52 +122,56 @@
 
         .accordion-content.active { display: block; }
 
-        /* --- BOUTONS NATURELS --- */
+        .description-text {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            color: #5d4037;
+            background: #fdfaf0;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 3px solid #d3c9a9;
+        }
+
         .resource-list { display: flex; gap: 15px; flex-wrap: wrap; }
 
         .btn {
-            padding: 12px 25px;
+            padding: 10px 20px;
             text-decoration: none;
             color: #fff;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             border-radius: 3px;
             transition: opacity 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
         }
 
-        .btn-pdf { background: #a63d40; } /* Rouge terre cuite */
-        .btn-video { background: #d4a373; } /* Sable doré */
-        .btn-image { background: #606c38; } /* Vert forêt */
-        
+        .btn-pdf { background: #a63d40; }
+        .btn-video { background: #d4a373; }
+        .btn-image { background: #606c38; }
         .btn:hover { opacity: 0.85; }
 
-        /* Couleurs thématiques par discipline */
-        .disc-histoire { color: var(--hist-color); }
         .item-histoire { border-left-color: var(--hist-color); }
-        .disc-géographie { color: var(--geo-color); }
+        .disc-histoire { color: var(--hist-color); }
         .item-géographie { border-left-color: var(--geo-color); }
-        .disc-emc { color: var(--emc-color); }
+        .disc-géographie { color: var(--geo-color); }
         .item-emc { border-left-color: var(--emc-color); }
+        .disc-emc { color: var(--emc-color); }
 
         @media (max-width: 600px) {
             .hero h1 { font-size: 1.8rem; }
-            .accordion-header { flex-direction: column; align-items: flex-start; }
+            .accordion-header { flex-direction: column; align-items: flex-start; gap: 10px; }
         }
     </style>
 </head>
 <body>
 
 <div class="hero">
-    <h1>Les documents de M. Dieu</h1>
-    <p>« L'Histoire vaut bien mieux que la géo » Votre professeur préféré.</p>
+    <h1>Les Cahiers de M. Di</h1>
+    <p>« Celui qui ne sait pas d'où il vient ne peut savoir où il va. »</p>
 </div>
 
 <div class="container">
     <div class="search-container">
-        <input type="text" id="search-bar" placeholder="Chercher dans les archives..." oninput="updateUI()">
+        <input type="text" id="search-bar" placeholder="Chercher un chapitre..." oninput="updateUI()">
         <select id="f-disc" onchange="updateUI()">
             <option value="all">Toutes les matières</option>
             <option value="Histoire">Histoire</option>
@@ -189,7 +186,7 @@
         </select>
     </div>
 
-    <div id="main-list">Préparation du bureau...</div>
+    <div id="main-list">Chargement des archives...</div>
 </div>
 
 <script>
@@ -208,15 +205,16 @@
                     disc: c[0]?.trim(), 
                     niv: c[1]?.trim(), 
                     titre: c[2]?.trim(), 
-                    pdf: c[3]?.trim(), 
-                    vid: c[4]?.trim(), 
-                    img: c[5]?.trim() 
+                    desc: c[3]?.trim(),
+                    pdf: c[4]?.trim(), 
+                    vid: c[5]?.trim(), 
+                    img: c[6]?.trim() 
                 };
             }).filter(i => i.titre && i.titre.length > 1);
 
             updateUI();
         } catch (e) { 
-            document.getElementById('main-list').innerHTML = "Le grimoire est resté fermé (Erreur de chargement)."; 
+            document.getElementById('main-list').innerHTML = "Erreur de connexion au bureau."; 
         }
     }
 
@@ -230,21 +228,23 @@
         const filtered = dataStore.filter(i => {
             const matchD = (dF === 'all' || i.disc === dF);
             const matchN = (nF === 'all' || i.niv === nF);
-            const matchS = i.titre.toLowerCase().includes(sF);
+            const matchS = (i.titre + i.desc).toLowerCase().includes(sF);
             return matchD && matchN && matchS;
         });
 
         if (filtered.length === 0) {
-            list.innerHTML = "<p style='text-align:center; padding:20px;'>Aucun parchemin trouvé pour cette recherche.</p>";
+            list.innerHTML = "<p style='text-align:center; padding:20px;'>Aucune ressource trouvée.</p>";
             return;
         }
 
         filtered.forEach((i, idx) => {
             const dClass = i.disc ? i.disc.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
             let btns = "";
-            if(i.pdf && i.pdf.length > 10) btns += `<a href="${i.pdf}" target="_blank" class="btn btn-pdf">Consulter le cours</a>`;
-            if(i.vid && i.vid.length > 10) btns += `<a href="${i.vid}" target="_blank" class="btn btn-video">Voir la vidéo</a>`;
+            if(i.pdf && i.pdf.length > 10) btns += `<a href="${i.pdf}" target="_blank" class="btn btn-pdf">Cours (PDF)</a>`;
+            if(i.vid && i.vid.length > 10) btns += `<a href="${i.vid}" target="_blank" class="btn btn-video">Vidéo</a>`;
             if(i.img && i.img.length > 10) btns += `<a href="${i.img}" target="_blank" class="btn btn-image">Schéma</a>`;
+
+            const descHtml = i.desc ? `<div class="description-text">${i.desc}</div>` : "";
 
             list.innerHTML += `
                 <div class="accordion-item item-${dClass}">
@@ -256,7 +256,8 @@
                         <span class="niveau-badge">${i.niv}</span>
                     </div>
                     <div id="c-${idx}" class="accordion-content">
-                        <div class="resource-list">${btns || "<i>Pas de ressources disponibles.</i>"}</div>
+                        ${descHtml}
+                        <div class="resource-list">${btns || "<i>Pas de ressources.</i>"}</div>
                     </div>
                 </div>`;
         });
@@ -273,4 +274,3 @@
 </script>
 </body>
 </html>
-
