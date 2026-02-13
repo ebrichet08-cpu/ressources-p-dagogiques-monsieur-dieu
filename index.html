@@ -259,7 +259,7 @@
             if(i.pdf && i.pdf.length > 10) {
                 const pdfs = i.pdf.split('|');
                 pdfs.forEach((link, n) => {
-                    const label = pdfs.length > 1 ? `PDF ${n+1}` : `Cours (PDF)`;
+                    const label = pdfs.length > 1 ? `PDF ${n+1}` : `Document(s)`;
                     btns += `<a href="${link.trim()}" target="_blank" class="btn btn-pdf">${label}</a>`;
                 });
             }
@@ -313,3 +313,4 @@
 </script>
 </body>
 </html>
+
