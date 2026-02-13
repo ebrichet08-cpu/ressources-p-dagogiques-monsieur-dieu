@@ -3,41 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ressources Pédagogiques - M. Di</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Les Cahiers de M. Di</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@600;800&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --hist-color: #9b2226;
-            --geo-color: #005f73;
-            --emc-color: #0a9396;
-            --bg-page: #f0f4f8;
-            --text-dark: #1e293b;
-            --card-bg: #ffffff;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --hist-color: #721c24;
+            --geo-color: #0c5460;
+            --emc-color: #155724;
+            /* Palette Chaleureuse */
+            --paper-bg: #fdf6e3; /* Crème papier */
+            --accent-wood: #4e342e;
+            --text-sepia: #433422;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-page);
-            color: var(--text-dark);
+            font-family: 'Public Sans', sans-serif;
+            background-color: var(--paper-bg);
+            /* Texture papier subtile */
+            background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+            color: var(--text-sepia);
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
-        /* --- HEADER STYLISÉ --- */
+        /* --- HEADER STYLE "VIEUX GRIMOIRE" --- */
         .hero {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-            color: white;
-            padding: 40px 20px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1000&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 60px 20px;
             text-align: center;
-            margin-bottom: 40px;
-            box-shadow: var(--shadow);
+            border-bottom: 5px solid var(--accent-wood);
         }
 
         .hero h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.8rem;
             margin: 0;
-            font-size: 2rem;
-            font-weight: 800;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .container {
@@ -46,47 +53,43 @@
             padding: 0 20px 40px 20px;
         }
 
-        /* --- FILTRES ET RECHERCHE --- */
+        /* --- FILTRES STYLE "BUREAU" --- */
         .search-container {
-            background: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            margin-top: -60px;
+            background: #fffdf7;
+            padding: 25px;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-top: -40px;
             margin-bottom: 30px;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 15px;
+            border: 1px solid #e5dcc3;
         }
 
         input[type="text"], select {
-            padding: 12px 16px;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            background: #f8fafc;
-            font-size: 14px;
-            outline: none;
+            padding: 12px;
+            border: 1px solid #d3c9a9;
+            background: #fff;
+            font-family: inherit;
+            border-radius: 4px;
             flex: 1;
-            min-width: 150px;
+            min-width: 180px;
         }
 
-        input[type="text"]:focus, select:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        /* --- ACCORDÉON AMÉLIORÉ --- */
+        /* --- ACCORDÉON "FEUILLES DE PAPIER" --- */
         .accordion-item {
-            background: var(--card-bg);
-            border-radius: 16px;
-            margin-bottom: 16px;
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: #fff;
+            margin-bottom: 20px;
+            border-radius: 2px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid #d3c9a9;
+            transition: all 0.3s ease;
         }
 
         .accordion-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateX(5px);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
         }
 
         .accordion-header {
@@ -97,103 +100,81 @@
             align-items: center;
         }
 
-        .course-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        .course-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
-
-        .indicator {
-            width: 6px;
-            height: 35px;
-            border-radius: 10px;
-        }
-
-        .title-group { display: flex; flex-direction: column; }
 
         .disc-label {
-            font-size: 0.7rem;
-            font-weight: 800;
+            font-size: 0.8rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-
-        .course-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-dark);
+            margin-bottom: 5px;
+            display: block;
         }
 
         .niveau-badge {
-            font-size: 0.75rem;
-            background: #f1f5f9;
-            padding: 6px 12px;
-            border-radius: 10px;
-            color: #64748b;
-            font-weight: 700;
+            font-style: italic;
+            color: #8d7d5d;
+            font-weight: 600;
         }
 
         .accordion-content {
             display: none;
-            padding: 0 25px 25px 46px; /* Alignement avec le titre */
-            animation: slideDown 0.3s ease-out;
+            padding: 0 25px 25px 25px;
+            border-top: 1px dashed #e5dcc3;
+            padding-top: 20px;
         }
 
         .accordion-content.active { display: block; }
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- BOUTONS --- */
-        .resource-list { display: flex; gap: 10px; flex-wrap: wrap; }
+        /* --- BOUTONS NATURELS --- */
+        .resource-list { display: flex; gap: 15px; flex-wrap: wrap; }
 
         .btn {
-            padding: 10px 20px;
-            border-radius: 12px;
+            padding: 12px 25px;
             text-decoration: none;
-            color: white;
-            font-size: 14px;
+            color: #fff;
+            font-size: 0.9rem;
             font-weight: 600;
+            border-radius: 3px;
+            transition: opacity 0.2s;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.2s;
         }
 
-        .btn:active { transform: scale(0.95); }
-        .btn-pdf { background: #ef4444; box-shadow: 0 4px 0 #b91c1c; }
-        .btn-video { background: #f59e0b; box-shadow: 0 4px 0 #b45309; }
-        .btn-image { background: #10b981; box-shadow: 0 4px 0 #047857; }
+        .btn-pdf { background: #a63d40; } /* Rouge terre cuite */
+        .btn-video { background: #d4a373; } /* Sable doré */
+        .btn-image { background: #606c38; } /* Vert forêt */
         
-        .btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        .btn:hover { opacity: 0.85; }
 
-        /* Couleurs thématiques */
+        /* Couleurs thématiques par discipline */
         .disc-histoire { color: var(--hist-color); }
-        .bg-histoire { background-color: var(--hist-color); }
+        .item-histoire { border-left-color: var(--hist-color); }
         .disc-géographie { color: var(--geo-color); }
-        .bg-géographie { background-color: var(--geo-color); }
+        .item-géographie { border-left-color: var(--geo-color); }
         .disc-emc { color: var(--emc-color); }
-        .bg-emc { background-color: var(--emc-color); }
+        .item-emc { border-left-color: var(--emc-color); }
 
         @media (max-width: 600px) {
-            .search-container { flex-direction: column; }
-            .hero h1 { font-size: 1.5rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .accordion-header { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
 
 <div class="hero">
-    <h1>📚 Ressources Pédagogiques</h1>
-    <p>Histoire, Géographie & EMC</p>
+    <h1>Les Cahiers de M. Di</h1>
+    <p>« Celui qui ne sait pas d'où il vient ne peut savoir où il va. »</p>
 </div>
 
 <div class="container">
     <div class="search-container">
-        <input type="text" id="search-bar" placeholder="🔍 Rechercher un cours..." oninput="updateUI()">
+        <input type="text" id="search-bar" placeholder="Chercher dans les archives..." oninput="updateUI()">
         <select id="f-disc" onchange="updateUI()">
             <option value="all">Toutes les matières</option>
             <option value="Histoire">Histoire</option>
@@ -208,7 +189,7 @@
         </select>
     </div>
 
-    <div id="main-list">Chargement des ressources...</div>
+    <div id="main-list">Préparation du bureau...</div>
 </div>
 
 <script>
@@ -217,7 +198,7 @@
 
     async function load() {
         try {
-            const r = await fetch(url + "&nocache=" + Date.now());
+            const r = await fetch(url + "&t=" + Date.now());
             const text = await r.text();
             const lines = text.split('\n').slice(1);
             
@@ -235,7 +216,7 @@
 
             updateUI();
         } catch (e) { 
-            document.getElementById('main-list').innerHTML = "Erreur de connexion au tableur."; 
+            document.getElementById('main-list').innerHTML = "Le grimoire est resté fermé (Erreur de chargement)."; 
         }
     }
 
@@ -254,31 +235,28 @@
         });
 
         if (filtered.length === 0) {
-            list.innerHTML = "<p style='text-align:center; padding:20px; color:#64748b;'>Aucun résultat trouvé.</p>";
+            list.innerHTML = "<p style='text-align:center; padding:20px;'>Aucun parchemin trouvé pour cette recherche.</p>";
             return;
         }
 
         filtered.forEach((i, idx) => {
             const dClass = i.disc ? i.disc.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
             let btns = "";
-            if(i.pdf && i.pdf.length > 10) btns += `<a href="${i.pdf}" target="_blank" class="btn btn-pdf">PDF</a>`;
-            if(i.vid && i.vid.length > 10) btns += `<a href="${i.vid}" target="_blank" class="btn btn-video">Vidéo</a>`;
-            if(i.img && i.img.length > 10) btns += `<a href="${i.img}" target="_blank" class="btn btn-image">Image</a>`;
+            if(i.pdf && i.pdf.length > 10) btns += `<a href="${i.pdf}" target="_blank" class="btn btn-pdf">Consulter le cours</a>`;
+            if(i.vid && i.vid.length > 10) btns += `<a href="${i.vid}" target="_blank" class="btn btn-video">Voir la vidéo</a>`;
+            if(i.img && i.img.length > 10) btns += `<a href="${i.img}" target="_blank" class="btn btn-image">Schéma</a>`;
 
             list.innerHTML += `
-                <div class="accordion-item">
+                <div class="accordion-item item-${dClass}">
                     <div class="accordion-header" onclick="toggle(${idx})">
-                        <div class="course-info">
-                            <div class="indicator bg-${dClass}"></div>
-                            <div class="title-group">
-                                <span class="disc-label disc-${dClass}">${i.disc}</span>
-                                <span class="course-title">${i.titre}</span>
-                            </div>
+                        <div class="title-group">
+                            <span class="disc-label disc-${dClass}">${i.disc}</span>
+                            <span class="course-title">${i.titre}</span>
                         </div>
                         <span class="niveau-badge">${i.niv}</span>
                     </div>
                     <div id="c-${idx}" class="accordion-content">
-                        <div class="resource-list">${btns || "<i>Pas de ressources.</i>"}</div>
+                        <div class="resource-list">${btns || "<i>Pas de ressources disponibles.</i>"}</div>
                     </div>
                 </div>`;
         });
