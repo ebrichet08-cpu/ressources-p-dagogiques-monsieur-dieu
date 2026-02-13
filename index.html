@@ -14,7 +14,6 @@
             --accent-wood: #4e342e;
             --text-sepia: #433422;
         }
-
         body {
             font-family: 'Public Sans', sans-serif;
             background-color: var(--paper-bg);
@@ -24,7 +23,6 @@
             padding: 0;
             line-height: 1.6;
         }
-
         .hero {
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
                         url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1000&auto=format&fit=crop'); 
@@ -35,20 +33,17 @@
             text-align: center;
             border-bottom: 5px solid var(--accent-wood);
         }
-
         .hero h1 {
             font-family: 'Crimson Pro', serif;
             font-size: 2.8rem;
             margin: 0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-
         .container {
             max-width: 850px;
             margin: 0 auto;
             padding: 0 20px 40px 20px;
         }
-
         .search-container {
             background: #fffdf7;
             padding: 25px;
@@ -61,7 +56,6 @@
             gap: 15px;
             border: 1px solid #e5dcc3;
         }
-
         input[type="text"], select {
             padding: 12px;
             border: 1px solid #d3c9a9;
@@ -70,7 +64,6 @@
             flex: 1;
             min-width: 180px;
         }
-
         .accordion-item {
             background: #fff;
             margin-bottom: 20px;
@@ -79,12 +72,10 @@
             border-left: 5px solid #d3c9a9;
             transition: all 0.3s ease;
         }
-
         .accordion-item:hover {
             transform: translateX(5px);
             box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
         }
-
         .accordion-header {
             padding: 20px;
             cursor: pointer;
@@ -92,13 +83,11 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .course-title {
             font-family: 'Crimson Pro', serif;
             font-size: 1.3rem;
             font-weight: 600;
         }
-
         .disc-label {
             font-size: 0.8rem;
             font-weight: 700;
@@ -106,22 +95,20 @@
             margin-bottom: 5px;
             display: block;
         }
-
         .niveau-badge {
             font-style: italic;
             color: #8d7d5d;
             font-weight: 600;
         }
-
         .accordion-content {
             display: none;
             padding: 0 25px 25px 25px;
             border-top: 1px dashed #e5dcc3;
             padding-top: 20px;
         }
-
-        .accordion-content.active { display: block; }
-
+        .accordion-content.active { 
+            display: block;
+        }
         .description-text {
             margin-bottom: 20px;
             font-size: 0.95rem;
@@ -131,13 +118,10 @@
             border-radius: 4px;
             border-left: 3px solid #d3c9a9;
         }
-
-        /* --- STYLE POUR L'IMAGE DANS L'ACCORDÉON --- */
         .illustration-container {
             margin: 20px 0;
             text-align: center;
         }
-
         .illustration-img {
             max-width: 100%;
             height: auto;
@@ -145,9 +129,7 @@
             border: 1px solid #d3c9a9;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-
         .resource-list { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
-
         .btn {
             padding: 10px 18px;
             text-decoration: none;
@@ -158,18 +140,15 @@
             transition: opacity 0.2s;
             white-space: nowrap;
         }
-
         .btn-pdf { background: #a63d40; }
         .btn-video { background: #d4a373; }
         .btn:hover { opacity: 0.85; }
-
         .item-histoire { border-left-color: var(--hist-color); }
         .disc-histoire { color: var(--hist-color); }
         .item-géographie { border-left-color: var(--geo-color); }
         .disc-géographie { color: var(--geo-color); }
         .item-emc { border-left-color: var(--emc-color); }
         .disc-emc { color: var(--emc-color); }
-
         @media (max-width: 600px) {
             .hero h1 { font-size: 1.8rem; }
             .accordion-header { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -212,7 +191,7 @@
     <div id="main-list">Chargement des archives...</div>
 </div>
 <div class="footer">
-        @réalisé par des élèves
+        @Vive l'Histoire
 </div>
     
 <script>
@@ -325,6 +304,7 @@
 </script>
 </body>
 </html>
+
 
 
 
