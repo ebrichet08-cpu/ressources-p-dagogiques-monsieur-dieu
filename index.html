@@ -245,8 +245,7 @@
         filtered.forEach((i, idx) => {
             const dClass = i.disc ? i.disc.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
             let btns = "";
-            
-            // Gestion multi-PDF
+        
             if(i.pdf && i.pdf.length > 10) {
                 const pdfs = i.pdf.split('|');
                 pdfs.forEach((link, n) => {
@@ -255,7 +254,6 @@
                 });
             }
             
-            // Gestion multi-Vidéos
             if(i.vid && i.vid.length > 10) {
                 const vids = i.vid.split('|');
                 vids.forEach((link, n) => {
@@ -264,7 +262,6 @@
                 });
             }
 
-            // --- NOUVEAU : AFFICHAGE DIRECT DES IMAGES ---
             let imgHtml = "";
             if(i.img && i.img.length > 10) {
                 const imgs = i.img.split('|');
@@ -304,6 +301,7 @@
 </script>
 </body>
 </html>
+
 
 
 
